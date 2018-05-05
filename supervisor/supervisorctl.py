@@ -742,11 +742,11 @@ class DefaultControllerPlugin(ControllerPluginBase):
                         try:
                             _ = supervisor.startProcess(_name)
                         except xmlrpclib.Fault as e:
-                            error = {
+                            error = self._startresult({
                                 'status': e.faultCode,
                                 'name': _pname,
                                 'group': _gname,
-                                'description': e.faultString}
+                                'description': e.faultString})
                             self.ctl.output(error)
                         else:
                             # _name = make_namespec(_gname, _pname)
@@ -827,11 +827,11 @@ class DefaultControllerPlugin(ControllerPluginBase):
                         try:
                             supervisor.stopProcess(_name)
                         except xmlrpclib.Fault as e:
-                            error = {
+                            error = self._startresult({
                                 'status': e.faultCode,
                                 'name': _pname,
                                 'group': _gname,
-                                'description': e.faultString}
+                                'description': e.faultString})
                             self.ctl.output(error)
                         else:
                             # name = make_namespec(group_name, process_name)
